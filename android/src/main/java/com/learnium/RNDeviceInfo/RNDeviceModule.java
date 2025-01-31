@@ -204,12 +204,39 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   // This should have an `@Override` tag, but the method does not exist until
   // react-native >= 0.74, which would cause linting errors across versions
   // once minimum supported react-native here is 0.74+, add the tag
-  public void invalidate() {
-    getReactApplicationContext().unregisterReceiver(receiver);
-    getReactApplicationContext().unregisterReceiver(headphoneConnectionReceiver);
-    getReactApplicationContext().unregisterReceiver(headphoneWiredConnectionReceiver);
-    getReactApplicationContext().unregisterReceiver(headphoneBluetoothConnectionReceiver);
-  }
+ public void invalidate() {
+     try {
+         if (receiver != null) {
+             getReactApplicationContext().unregisterReceiver(receiver);
+             receiver = null;
+         }
+     } catch (IllegalArgumentException e) {
+     }
+
+     try {
+         if (headphoneConnectionReceiver != null) {
+             getReactApplicationContext().unregisterReceiver(headphoneConnectionReceiver);
+             headphoneConnectionReceiver = null;
+         }
+     } catch (IllegalArgumentException e) {
+     }
+
+     try {
+         if (headphoneWiredConnectionReceiver != null) {
+             getReactApplicationContext().unregisterReceiver(headphoneWiredConnectionReceiver);
+             headphoneWiredConnectionReceiver = null;
+         }
+     } catch (IllegalArgumentException e) {
+     }
+
+     try {
+         if (headphoneBluetoothConnectionReceiver != null) {
+             getReactApplicationContext().unregisterReceiver(headphoneBluetoothConnectionReceiver);
+             headphoneBluetoothConnectionReceiver = null;
+         }
+     } catch (IllegalArgumentException e) {
+     }
+ }
 
 
   @Override
