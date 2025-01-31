@@ -1,5 +1,5 @@
 {
-  "name": "react-native-device-info",
+  "name": "react-native-device-info-castro",
   "version": "14.0.2",
   "description": "Get device information using react-native",
   "react-native": "src/index.ts",
